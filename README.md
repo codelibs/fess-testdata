@@ -23,7 +23,7 @@
 
 ## ファイル一覧
 
-| 種類 | ファイル名 |
+| 種類 | 場所 |
 |:----:|:-----------|
 |テキスト|[text/test_utf8.txt](https://raw.githubusercontent.com/codelibs/fess-testdata/master/text/test_utf8.txt)|
 |XML|[xml/test_utf8.xml](https://raw.githubusercontent.com/codelibs/fess-testdata/master/xml/test_utf8.xml)|
