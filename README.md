@@ -51,3 +51,10 @@
 |圧縮ファイル|[archive/test.tar.gz](https://raw.githubusercontent.com/codelibs/fess-testdata/master/archive/test.tar.gz)|
 |圧縮ファイル|[archive/test.tar](https://raw.githubusercontent.com/codelibs/fess-testdata/master/archive/test.tar)|
 |圧縮ファイル|[archive/test.zip](https://raw.githubusercontent.com/codelibs/fess-testdata/master/archive/test.zip)|
+
+## その他
+
+| 種類 | 場所 |
+|:----:|:-----------|
+|旧字体|[other/old_style.txt](https://raw.githubusercontent.com/codelibs/fess-testdata/master/other/old_style.txt)|
+
