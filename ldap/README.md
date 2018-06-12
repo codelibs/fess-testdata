@@ -3,7 +3,7 @@ LDAP Testing Environment
 
 ## Overview
 
-TBD
+This repository is LDAP test environment for Fess.
 
 ### Start LDAP Sever and phpMyAdmin
 
@@ -19,7 +19,19 @@ i. Open phpMyAdmin: `http://localhost:8081`
 
 ### Start Fess
 
-TBD
+1. Download [Fess](https://github.com/codelibs/fess/releases)
+1. Configure [LDAP settings](https://fess.codelibs.org/12.1/admin/general-guide.html#ldap-configuration)
+
+### Login Users
+
+The following users are in LDAP.
+
+| Username | Password  |
+|+--------+|+--------=+!
+| suzuki   | suzuki123 |
+| sato     | sato123   |
+
+## Others
 
 ### LDAPS
 
