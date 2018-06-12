@@ -13,13 +13,16 @@ $ docker-compose up
 
 ### Import Data
 
-i. Open phpMyAdmin: `http://localhost:8081`
+1. Open phpMyAdmin: `http://localhost:8081`
+
 1. Login `cn=admin,dc=fess,dc=codelibs,dc=org`/`admin` as username/password
+
 1. Import `fess_codelibs_org.ldif`
 
 ### Start Fess
 
 1. Download [Fess](https://github.com/codelibs/fess/releases)
+
 1. Configure [LDAP settings](https://fess.codelibs.org/12.1/admin/general-guide.html#ldap-configuration)
 
 ### Login Users
@@ -27,7 +30,7 @@ i. Open phpMyAdmin: `http://localhost:8081`
 The following users are in LDAP.
 
 | Username | Password  |
-|+--------+|+--------=+!
+|:--------:|:---------:|
 | suzuki   | suzuki123 |
 | sato     | sato123   |
 
