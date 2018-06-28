@@ -1,0 +1,19 @@
+version: '2'
+services:
+  db:
+    build: .
+    container_name: mysql
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: testdb
+      MYSQL_USER: hoge
+      MYSQL_PASSWORD: fuga
+
+  adminer:
+    container_name: adminer
+    image: adminer
+    restart: always
+    ports:
+      - 8083:8080
