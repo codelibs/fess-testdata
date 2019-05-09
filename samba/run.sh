@@ -9,6 +9,10 @@ Path:
 smb://localhost/public/
 smb1://localhost/public/
 
+Authentication:
+Username: testuser1 or testuser2
+Password: test123
+
 Starting Samba Docker...
 EOS
 
