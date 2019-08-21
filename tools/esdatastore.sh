@@ -2,14 +2,16 @@
 
 HOST=localhost:9201
 INDEX=es_datastore
-TYPE=doc
+TYPE=_doc
 NUM=1000
 
-curl -XDELETE $HOST/$INDEX?pretty
+curl -XDELETE -H "Content-Type: application/json" $HOST/$INDEX?pretty
+curl -XPOST -H "Content-Type: application/json" $HOST/_refresh?pretty
+curl -XPUT -H "Content-Type: application/json" $HOST/$INDEX?pretty -d '{"mappings":{"properties":{"content":{"type":"text"},"size":{"type":"long"},"title":{"type":"text"},"url":{"type":"keyword"}}},"settings":{"index":{"number_of_shards":"1","number_of_replicas":"0"}}}}'
 
 count=1
 while [ $count -le $NUM ] ; do
-    curl -XPUT $HOST/$INDEX/$TYPE/$count?pretty -d '{"title":"ESDataStore '$count'","content":"Test Message '$count'","url":"http://'$HOST'/'$INDEX'/'$TYPE'/'$count'","size":100}'
+    curl -XPUT -H "Content-Type: application/json" $HOST/$INDEX/$TYPE/$count?pretty -d '{"title":"ESDataStore '$count'","content":"Test Message '$count'","url":"http://'$HOST'/'$INDEX'/'$TYPE'/'$count'","size":100}'
     count=`expr $count + 1`
 done
 
@@ -21,10 +23,8 @@ cat << EOF
 EsDataStore
 
 <<Parameter>>
-settings.cluster.name=elasticsearch
-hosts=`echo $HOST|sed -e "s/9201/9301/"`
+settings.http.hosts=`echo $HOST`
 index=$INDEX
-type=$TYPE
 delete.processed.doc=true
 
 <<Script>>
