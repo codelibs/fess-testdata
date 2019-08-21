@@ -1,7 +1,7 @@
-version: '2'
+version: '3'
 services:
   openldap:
-    image: osixia/openldap:1.2.1
+    image: osixia/openldap:1.2.5
     container_name: openldap
     environment:
       LDAP_LOG_LEVEL: "256"
@@ -36,10 +36,9 @@ services:
     ports:
       - "389:389"
       - "636:636"
-    domainname: "fess.codelibs.org" # important: same as hostname
     hostname: "fess.codelibs.org"
   phpldapadmin:
-    image: osixia/phpldapadmin:0.7.1
+    image: osixia/phpldapadmin:0.8.0
     container_name: phpldapadmin
     environment:
       PHPLDAPADMIN_LDAP_HOSTS: "openldap"
