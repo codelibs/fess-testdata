@@ -1,19 +1,18 @@
-version: '2'
+version: '3'
+
 services:
-  db:
-    build: .
+  mysql:
+    image: mysql:5.7
     container_name: mysql
-    ports:
-      - 3306:3306
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: testdb
       MYSQL_USER: hoge
       MYSQL_PASSWORD: fuga
-
-  adminer:
-    container_name: adminer
-    image: adminer
-    restart: always
+      TZ: 'Asia/Tokyo'
+    volumes:
+    - ./data/my.cnf:/etc/mysql/conf.d/my.cnf
+    - ./data/sql:/sql
     ports:
-      - 8083:8080
+    - 3306:3306
+
