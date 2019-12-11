@@ -1,0 +1,31 @@
+Basic Authentication Test Environment
+======================================
+
+### Overview
+This repository is Basic Authentication test environment for Fess.
+
+### start apache
+
+```
+$ docker-compose up
+```
+
+### URL
+
+`http://localhost:10080 `
+
+### Login Users
+
+| Username | Password  |
+|:--------:|:---------:|
+| test     | test      |
+
+### Fess
+
+1. Download [Fess](https://github.com/codelibs/fess/releases)
+
+1. Configure [Web Configuration](https://fess.codelibs.org/13.4/admin/webconfig-guide.html)
+
+1. Configure [Web Authentication](https://fess.codelibs.org/13.4/admin/webauth-guide.html)
+
+1. Start Crawl

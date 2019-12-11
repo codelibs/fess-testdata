@@ -2,12 +2,10 @@ version: '2'
 services:
   apache:
     image: httpd:2.4.33
-    container_name: apache
+    container_name: apache_digest
     ports:
-      - "10080:80"
+      - "18080:80"
     volumes:
       - ./var/html/:/usr/local/apache2/htdocs/
       - ./var/httpd.conf:/usr/local/apache2/conf/httpd.conf
       - ./var/.htdigest:/usr/local/apache2/.htdigest
-      - ./var/.htpasswd:/usr/local/apache2/.htpasswd
-
