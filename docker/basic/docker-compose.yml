@@ -5,6 +5,7 @@ services:
     container_name: apache_basic
     ports:
       - "10080:80"
+      - "10443:443"
     volumes:
       - ./var/html/:/usr/local/apache2/htdocs/
       - ./var/httpd.conf:/usr/local/apache2/conf/httpd.conf
