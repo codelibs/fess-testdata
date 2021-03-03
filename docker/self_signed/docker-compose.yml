@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  https-portal:
+    image: steveltn/https-portal:1
+    ports:
+      - 10080:80
+      - 10443:443
+    environment:
+      DOMAINS: 'localhost'
+      STAGE: local
