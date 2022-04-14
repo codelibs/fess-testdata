@@ -23,7 +23,7 @@ $ docker-compose exec mysql bash -c "mysql -u hoge -pfuga testdb < /sql/testdb.s
 |Name|Value|
 |:------:|:--|
 |Handler|DatabaseDataStore|
-|Parameter|driver=com.mysql.jdbc.Driver<br>url=jdbc:mysql://localhost:3306/testdb?useUnicode=true&characterEncoding=UTF-8<br>username=hoge<br>password=fuga<br>sql=select * from doc|
+|Parameter|driver=com.mysql.jdbc.Driver<br>url=jdbc:mysql://localhost:3306/testdb?useUnicode=true&characterEncoding=UTF-8&enabledTLSProtocols=TLSv1.2<br>username=hoge<br>password=fuga<br>sql=select * from doc|
 |Script|url="http://localhost/" + id<br>host="localhost"<br>site="localhost"<br>title=title<br>content=content<br>cache=content<br>digest=content<br>anchor=<br>content_length=content.length()<br>last_modified=new java.util.Date()<br>location=latitude + "," + longitude<br>latitude=latitude<br>longitude=longitude|
 
 ## Stop MySQL
