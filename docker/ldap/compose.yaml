@@ -1,7 +1,6 @@
-version: '3'
 services:
   openldap:
-    image: osixia/openldap:1.2.5
+    image: osixia/openldap:1.5.0
     container_name: openldap
     environment:
       LDAP_LOG_LEVEL: "256"
@@ -11,8 +10,6 @@ services:
       LDAP_ADMIN_PASSWORD: "admin"
       LDAP_CONFIG_PASSWORD: "config"
       LDAP_READONLY_USER: "false"
-      #LDAP_READONLY_USER_USERNAME: "readonly"
-      #LDAP_READONLY_USER_PASSWORD: "readonly"
       LDAP_RFC2307BIS_SCHEMA: "false"
       LDAP_BACKEND: "mdb"
       LDAP_TLS: "true"
@@ -30,15 +27,17 @@ services:
     tty: true
     stdin_open: true
     volumes:
-      - /var/lib/ldap
-      - /etc/ldap/slapd.d
-      - /container/service/slapd/assets/certs/
+      - ldap_data:/var/lib/ldap
+      - ldap_config:/etc/ldap/slapd.d
+      - ldap_certs:/container/service/slapd/assets/certs/
     ports:
       - "389:389"
       - "636:636"
     hostname: "fess.codelibs.org"
+    restart: unless-stopped
+
   phpldapadmin:
-    image: osixia/phpldapadmin:0.8.0
+    image: osixia/phpldapadmin:0.9.0
     container_name: phpldapadmin
     environment:
       PHPLDAPADMIN_LDAP_HOSTS: "openldap"
@@ -47,3 +46,9 @@ services:
       - "8081:80"
     depends_on:
       - openldap
+    restart: unless-stopped
+
+volumes:
+  ldap_data:
+  ldap_config:
+  ldap_certs:

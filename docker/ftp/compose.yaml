@@ -1,0 +1,10 @@
+services:
+  ftp:
+    build: .
+    container_name: ftp-server
+    ports:
+      - "10021:21"
+      - "30000-30009:30000-30009"
+    volumes:
+      - ./data:/home/vsftpd/testuser1/upload
+    restart: unless-stopped

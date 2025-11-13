@@ -4,10 +4,16 @@ Basic Authentication Test Environment
 ### Overview
 This repository is Basic Authentication test environment for Fess.
 
-### start apache
+### Start Apache
 
+```bash
+docker compose up -d
 ```
-$ docker-compose up
+
+### Stop Apache
+
+```bash
+docker compose down
 ```
 
 ### URL

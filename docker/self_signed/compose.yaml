@@ -1,0 +1,11 @@
+services:
+  https-portal:
+    image: steveltn/https-portal:1
+    container_name: https_portal_self_signed
+    ports:
+      - "10080:80"
+      - "10443:443"
+    environment:
+      DOMAINS: 'localhost'
+      STAGE: 'local'
+    restart: unless-stopped
