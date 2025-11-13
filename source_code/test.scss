@@ -1,0 +1,63 @@
+/**
+ * Test SCSS file for Fess search indexing
+ * テスト用SCSSファイル
+ * Lorem ipsum dolor sit amet
+ * 吾輩は猫である
+ */
+
+// Variables - Lorem ipsum
+$primary-color: #4CAF50;
+$text-color: #333;
+$background-color: #f0f0f0;
+$border-color: #ccc;
+
+// Mixins - 吾輩は猫である
+@mixin box-shadow($shadow) {
+    -webkit-box-shadow: $shadow;
+    -moz-box-shadow: $shadow;
+    box-shadow: $shadow;
+}
+
+// Main container - Lorem ipsum
+.test-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+
+    // Nested styles - 吾輩は猫である
+    .test-document {
+        background-color: $background-color;
+        border: 1px solid $border-color;
+        border-radius: 4px;
+        padding: 15px;
+        margin-bottom: 20px;
+        @include box-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+
+        .document-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: $text-color;
+            margin-bottom: 10px;
+        }
+
+        .document-content {
+            font-size: 16px;
+            line-height: 1.6;
+            color: lighten($text-color, 20%);
+        }
+    }
+
+    .search-box {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border: 2px solid $primary-color;
+        border-radius: 4px;
+
+        &:focus {
+            outline: none;
+            border-color: darken($primary-color, 10%);
+        }
+    }
+}

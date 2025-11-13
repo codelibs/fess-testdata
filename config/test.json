@@ -1,0 +1,47 @@
+{
+  "_comment": "Test JSON configuration file for Fess search indexing",
+  "_comment2": "テスト用JSON設定ファイル",
+  "_comment3": "Lorem ipsum dolor sit amet",
+  "_comment4": "吾輩は猫である",
+  "general": {
+    "app_name": "Test Application",
+    "version": "1.0.0",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "author": "Fess Test Team"
+  },
+  "database": {
+    "_comment": "Database configuration - 吾輩は猫である",
+    "host": "localhost",
+    "port": 3306,
+    "database": "test_db",
+    "username": "testuser",
+    "password": "testpass",
+    "charset": "utf8mb4",
+    "pool_size": 10
+  },
+  "search": {
+    "_comment": "Search engine settings - Lorem ipsum",
+    "engine": "Fess",
+    "index_name": "test_index",
+    "max_results": 100,
+    "enable_highlight": true,
+    "default_language": "ja",
+    "analyzers": [
+      "japanese",
+      "english",
+      "cjk"
+    ]
+  },
+  "localization": {
+    "default_locale": "ja_JP",
+    "supported_locales": ["ja_JP", "en_US", "zh_CN"],
+    "timezone": "Asia/Tokyo",
+    "test_content": "吾輩は猫である。名前はまだない。"
+  },
+  "features": {
+    "full_text_search": true,
+    "fuzzy_search": true,
+    "autocomplete": true,
+    "spell_check": false
+  }
+}

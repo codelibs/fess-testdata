@@ -1,0 +1,48 @@
+/**
+ * Test CSS file for Fess search indexing
+ * テスト用CSSファイル
+ * Lorem ipsum dolor sit amet
+ * 吾輩は猫である
+ */
+
+/* Main container - Lorem ipsum */
+.test-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    /* 吾輩は猫である */
+}
+
+/* Test document styles */
+.test-document {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+/* Document title - Lorem ipsum */
+.document-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* Document content - 吾輩は猫である */
+.document-content {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #666;
+}
+
+/* Search box */
+.search-box {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #4CAF50;
+    border-radius: 4px;
+}
