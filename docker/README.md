@@ -1,8 +1,8 @@
 # Fess Test Docker Environments
 
-This directory contains various Docker-based test environments for testing [Fess](https://fess.codelibs.org/) crawling capabilities.
+This directory contains comprehensive Docker-based test environments for testing [Fess](https://fess.codelibs.org/) crawling capabilities across various data sources, protocols, and systems.
 
-## Available Environments
+## Available Environments (21 Total)
 
 ### Web Server Environments
 
@@ -43,7 +43,7 @@ This directory contains various Docker-based test environments for testing [Fess
 - **Credentials**: testuser / testpass
 - **Start**: `cd webdav && docker compose up -d`
 
-### Database Environments
+### Relational Database Environments
 
 #### 7. MySQL (`mysql/`)
 - **Purpose**: Test MySQL database crawling
@@ -59,38 +59,109 @@ This directory contains various Docker-based test environments for testing [Fess
 - **Credentials**: testuser / testpass
 - **Start**: `cd postgresql && docker compose up -d`
 
-#### 9. MongoDB (`mongodb/`)
-- **Purpose**: Test MongoDB NoSQL database crawling
+#### 9. MariaDB (`mariadb/`)
+- **Purpose**: Test MariaDB (MySQL-compatible) database crawling
+- **Port**: 3307
+- **Database**: testdb
+- **Credentials**: testuser / testpass
+- **Start**: `cd mariadb && docker compose up -d`
+
+#### 10. Microsoft SQL Server (`mssql/`)
+- **Purpose**: Test SQL Server database crawling
+- **Port**: 1433
+- **Database**: testdb
+- **Credentials**: sa / MyStrongPass123!
+- **Start**: `cd mssql && docker compose up -d`
+- **Note**: Requires 2GB+ RAM
+
+### NoSQL Database Environments
+
+#### 11. MongoDB (`mongodb/`)
+- **Purpose**: Test MongoDB document database crawling
 - **Port**: 27017
 - **Database**: testdb
 - **Credentials**: admin / admin123
 - **Start**: `cd mongodb && docker compose up -d`
 
-### Directory Service Environments
+#### 12. CouchDB (`couchdb/`)
+- **Purpose**: Test CouchDB document database crawling
+- **Port**: 5984
+- **Web UI**: http://localhost:5984/_utils/
+- **Credentials**: admin / admin123
+- **Start**: `cd couchdb && docker compose up -d`
 
-#### 10. LDAP (`ldap/`)
+#### 13. Cassandra (`cassandra/`)
+- **Purpose**: Test Cassandra distributed database crawling
+- **Port**: 9042 (CQL)
+- **Keyspace**: testdb
+- **Start**: `cd cassandra && docker compose up -d`
+- **Note**: Requires 2GB+ RAM, 60-90s startup time
+
+#### 14. Redis (`redis/`)
+- **Purpose**: Test Redis key-value store crawling
+- **Port**: 6379
+- **Password**: redis123
+- **Start**: `cd redis && docker compose up -d`
+
+### Search Engine Environments
+
+#### 15. Elasticsearch (`elasticsearch/`)
+- **Purpose**: Test Elasticsearch search engine integration
+- **Port**: 9200 (HTTP), 9300 (Transport)
+- **Index**: documents
+- **Start**: `cd elasticsearch && docker compose up -d`
+- **Note**: Fess uses Elasticsearch internally
+
+#### 16. Apache Solr (`solr/`)
+- **Purpose**: Test Apache Solr search platform integration
+- **Port**: 8983
+- **Core**: documents
+- **Admin UI**: http://localhost:8983/solr/
+- **Start**: `cd solr && docker compose up -d`
+
+### Object Storage & Cloud
+
+#### 17. MinIO (`minio/`)
+- **Purpose**: Test S3-compatible object storage crawling
+- **API Port**: 9000
+- **Console Port**: 9001
+- **Console UI**: http://localhost:9001
+- **Credentials**: minioadmin / minioadmin123
+- **Start**: `cd minio && docker compose up -d`
+
+### Directory Service
+
+#### 18. LDAP (`ldap/`)
 - **Purpose**: Test LDAP authentication and directory services
 - **Ports**: 389 (LDAP), 636 (LDAPS), 8081 (phpLDAPadmin)
 - **Admin DN**: cn=admin,dc=fess,dc=codelibs,dc=org
 - **Admin Password**: admin
 - **Start**: `cd ldap && docker compose up -d`
 
+### Content Management & Collaboration
+
+#### 19. WordPress (`wordpress/`)
+- **Purpose**: Test WordPress CMS content crawling
+- **Port**: 8080
+- **Admin**: http://localhost:8080/wp-admin
+- **Database**: MySQL (included)
+- **Start**: `cd wordpress && docker compose up -d`
+- **Note**: Complete setup wizard on first access
+
+#### 20. Gitea (`gitea/`)
+- **Purpose**: Test Git repository and code search
+- **Port**: 3000 (HTTP), 2222 (SSH)
+- **Web UI**: http://localhost:3000
+- **Start**: `cd gitea && docker compose up -d`
+- **Note**: Complete initial setup on first access
+
 ## Quick Start
-
-### Start All Environments
-
-```bash
-# Start all environments (not recommended for development)
-for dir in basic digest self_signed ftp samba webdav mysql postgresql mongodb ldap; do
-    (cd $dir && docker compose up -d)
-done
-```
 
 ### Start Specific Environment
 
 ```bash
-# Example: Start MySQL environment
-cd mysql
+# Example: Start PostgreSQL environment
+cd postgresql
 docker compose up -d
 
 # View logs
@@ -100,92 +171,95 @@ docker compose logs -f
 docker compose down
 ```
 
+### Start Multiple Environments
+
+```bash
+# Start all relational databases
+for dir in mysql postgresql mariadb mssql; do
+    (cd $dir && docker compose up -d)
+done
+
+# Start all NoSQL databases
+for dir in mongodb couchdb cassandra redis; do
+    (cd $dir && docker compose up -d)
+done
+```
+
 ## Requirements
 
-- Docker Engine 20.10+
-- Docker Compose V2 (using `docker compose` command)
-- Minimum 4GB RAM recommended
-- Ports: Ensure the following ports are available:
-  - 10080, 10443 (basic, self_signed, webdav)
-  - 18080 (digest)
-  - 10021, 30000-30009 (ftp)
-  - 1139, 1445 (samba)
-  - 3306 (mysql)
-  - 5432 (postgresql)
-  - 27017 (mongodb)
-  - 389, 636, 8081 (ldap)
+- **Docker Engine**: 20.10+
+- **Docker Compose**: V2 (using `docker compose` command, not `docker-compose`)
+- **RAM**: Minimum 4GB recommended
+  - 8GB+ recommended if running multiple databases
+  - Some environments require more (SQL Server, Cassandra: 2GB+ each)
+- **Disk Space**: 10GB+ recommended for all environments
+
+## Port Reference
+
+Quick reference of all ports used:
+
+| Port(s) | Service | Environment |
+|---------|---------|-------------|
+| 389, 636, 8081 | LDAP, LDAPS, phpLDAPadmin | ldap |
+| 1139, 1445 | SMB, CIFS | samba |
+| 1433 | SQL Server | mssql |
+| 2222 | SSH (Git) | gitea |
+| 3000 | Gitea Web | gitea |
+| 3306 | MySQL | mysql |
+| 3307 | MariaDB | mariadb |
+| 5432 | PostgreSQL | postgresql |
+| 5984 | CouchDB | couchdb |
+| 6379 | Redis | redis |
+| 8080 | WordPress | wordpress |
+| 8983 | Apache Solr | solr |
+| 9000, 9001 | MinIO API, Console | minio |
+| 9042, 7199 | Cassandra CQL, JMX | cassandra |
+| 9200, 9300 | Elasticsearch | elasticsearch |
+| 10021, 30000-30009 | FTP | ftp |
+| 10080 | HTTP (various) | basic, webdav |
+| 10443 | HTTPS | basic, self_signed |
+| 18080 | HTTP (Digest Auth) | digest |
+| 27017 | MongoDB | mongodb |
 
 ## Docker Compose V2
 
-All environments have been updated to use modern Docker Compose V2 format:
+All environments use modern Docker Compose V2 format:
 
-- **Old command**: `docker-compose up`
-- **New command**: `docker compose up`
-- **Changes**:
-  - Removed `version:` field (deprecated)
-  - Updated to latest image versions
-  - Added named volumes for data persistence
-  - Added `restart: unless-stopped` policies
-  - Improved configuration for production-like setup
+- **Command**: `docker compose` (not `docker-compose`)
+- **Format**: No `version:` field (deprecated in V2)
+- **Features**: Named volumes, restart policies, latest images
 
-## Directory Structure
+### Migration from V1
 
-```
-docker/
-├── README.md                    # This file
-├── basic/                       # Basic auth environment
-│   ├── compose.yaml
-│   ├── README.md
-│   └── var/
-├── digest/                      # Digest auth environment
-│   ├── compose.yaml
-│   ├── README.md
-│   └── var/
-├── self_signed/                 # Self-signed SSL environment
-│   ├── compose.yaml
-│   └── README.md
-├── ftp/                         # FTP server
-│   ├── compose.yaml
-│   ├── README.md
-│   ├── Dockerfile
-│   └── data/
-├── samba/                       # Samba/SMB server
-│   ├── compose.yaml
-│   ├── README.md
-│   └── data/
-├── webdav/                      # WebDAV server
-│   ├── compose.yaml
-│   ├── README.md
-│   └── data/
-├── mysql/                       # MySQL database
-│   ├── compose.yaml
-│   ├── README.md
-│   └── data/
-├── postgresql/                  # PostgreSQL database
-│   ├── compose.yaml
-│   ├── README.md
-│   └── data/
-├── mongodb/                     # MongoDB database
-│   ├── compose.yaml
-│   ├── README.md
-│   └── data/
-└── ldap/                        # LDAP directory
-    ├── compose.yaml
-    ├── README.md
-    └── fess_codelibs_org.ldif
+If you're upgrading from older compose files:
+
+```bash
+# Old command (V1)
+docker-compose up -d
+
+# New command (V2)
+docker compose up -d
 ```
 
-## Usage with Fess
+## Environment Categories
 
-Each environment directory contains a detailed README.md with:
+### By Data Type
 
-1. **Overview**: Description of the test environment
-2. **Setup Instructions**: How to start and stop the service
-3. **Connection Details**: URLs, ports, credentials
-4. **Fess Configuration**: Specific settings for configuring Fess to crawl the environment
-5. **Manual Testing**: How to manually test the environment
+- **Web Content**: basic, digest, self_signed, wordpress, gitea
+- **Files**: ftp, samba, webdav, minio
+- **Structured Data**: mysql, postgresql, mariadb, mssql, mongodb
+- **Key-Value**: redis, couchdb
+- **Distributed**: cassandra, elasticsearch, solr
+- **Authentication**: ldap
 
-Please refer to individual README.md files in each directory for detailed configuration instructions.
+### By Use Case
+
+- **E-commerce**: wordpress + mysql
+- **Enterprise**: mssql + ldap
+- **Big Data**: cassandra + elasticsearch
+- **Cloud Storage**: minio + s3
+- **Development**: gitea + postgresql
+- **Document Management**: webdav + postgresql
 
 ## Common Commands
 
@@ -197,7 +271,10 @@ docker compose up -d
 # View logs
 docker compose logs -f
 
-# Stop an environment
+# Check status
+docker compose ps
+
+# Stop environment
 docker compose down
 
 # Stop and remove volumes (clean slate)
@@ -206,60 +283,179 @@ docker compose down -v
 # Rebuild containers
 docker compose up -d --build
 
-# Check running containers
-docker compose ps
+# Execute command in container
+docker compose exec <service-name> <command>
+```
+
+## Data Initialization
+
+Most environments include initialization scripts:
+
+```bash
+# Example: Initialize PostgreSQL with sample data
+cd postgresql
+docker compose up -d
+sleep 10  # Wait for startup
+# Data is auto-loaded from data/sql/init.sql
+
+# Example: Load data into Elasticsearch
+cd elasticsearch
+docker compose up -d
+sleep 30  # Wait for startup
+./data/load_data.sh
 ```
 
 ## Troubleshooting
 
 ### Port Conflicts
 
-If you encounter port conflicts, you can modify the port mappings in the `compose.yaml` files:
+If you encounter port conflicts:
 
 ```yaml
+# Edit compose.yaml
 ports:
-  - "NEW_PORT:CONTAINER_PORT"
+  - "NEW_HOST_PORT:CONTAINER_PORT"
+```
+
+### Memory Issues
+
+Some databases need more memory:
+
+```bash
+# Check Docker memory allocation
+docker info | grep Memory
+
+# Increase in Docker Desktop:
+# Settings → Resources → Memory → 8GB
+```
+
+### Startup Time
+
+Some services take time to initialize:
+
+- **Fast** (5-10s): Redis, FTP, WebDAV, Basic Auth
+- **Medium** (15-30s): MySQL, PostgreSQL, MariaDB, MongoDB, Elasticsearch
+- **Slow** (30-60s): SQL Server, WordPress, Solr
+- **Very Slow** (60-90s): Cassandra, Gitea (first time)
+
+### Container Logs
+
+Check logs for startup issues:
+
+```bash
+docker compose logs -f <service-name>
 ```
 
 ### Volume Permissions
 
-Some environments may require specific permissions for mounted volumes:
+Fix permission issues:
 
 ```bash
-# Fix permissions for FTP
-chmod 755 ftp/data
-
-# Fix permissions for Samba
-chmod 755 samba/data
+# For directories that need specific permissions
+sudo chown -R 1000:1000 ./data
+chmod -R 755 ./data
 ```
 
-### Container Logs
+## Best Practices
 
-Check container logs for errors:
+### For Development
 
-```bash
-cd <environment-name>
-docker compose logs -f
-```
+1. **Start small**: Begin with 1-2 environments
+2. **Clean up**: Use `docker compose down -v` when done
+3. **Monitor resources**: Check `docker stats`
+4. **Read logs**: Use `docker compose logs` for debugging
+
+### For Testing
+
+1. **Consistent data**: Use provided init scripts
+2. **Isolated networks**: Each compose file creates own network
+3. **Snapshot volumes**: Backup volumes before destructive tests
+4. **Document configs**: Note any Fess config changes
+
+### For Production
+
+1. **Change passwords**: Update all default credentials
+2. **Enable SSL/TLS**: Configure HTTPS where applicable
+3. **Set up monitoring**: Use proper logging and metrics
+4. **Regular backups**: Automate data backups
+5. **Resource limits**: Set memory/CPU limits in compose files
+
+## Integration with Fess
+
+Each environment README includes:
+
+1. **Connection details**: Hosts, ports, credentials
+2. **Fess configuration**: Specific settings for crawling
+3. **Sample data**: Scripts to populate test data
+4. **API examples**: How to query/access data
+
+General integration steps:
+
+1. **Start environment**: `docker compose up -d`
+2. **Initialize data**: Run provided setup scripts
+3. **Configure Fess**: Follow environment README
+4. **Start crawl**: Begin crawling in Fess
+5. **Verify results**: Check indexed documents
 
 ## Contributing
 
 To add a new test environment:
 
-1. Create a new directory under `docker/`
-2. Add `compose.yaml` with the service definition
-3. Create `README.md` with setup and usage instructions
-4. Add sample data if applicable
-5. Update this main README.md with the new environment
+1. Create directory under `docker/`
+2. Add `compose.yaml` with service definitions
+3. Create `README.md` with:
+   - Overview and purpose
+   - Setup instructions
+   - Fess configuration guide
+   - Sample data and usage examples
+4. Add initialization scripts if needed
+5. Update this main README
+
+## Maintenance
+
+### Updating Images
+
+```bash
+# Pull latest images
+cd <environment>
+docker compose pull
+
+# Recreate containers
+docker compose up -d --force-recreate
+```
+
+### Cleaning Up
+
+```bash
+# Stop all containers
+docker compose down
+
+# Remove unused volumes
+docker volume prune
+
+# Remove unused images
+docker image prune
+
+# Complete cleanup (careful!)
+docker system prune -a --volumes
+```
+
+## Resources
+
+- [Fess Official Website](https://fess.codelibs.org/)
+- [Fess GitHub](https://github.com/codelibs/fess)
+- [Fess Documentation](https://fess.codelibs.org/latest/)
+- [Docker Compose Documentation](https://docs.docker.com/compose/)
+- [Docker Hub](https://hub.docker.com/)
 
 ## License
 
-These test environments are part of the fess-testdata repository and follow the same license.
+These test environments are part of the fess-testdata repository.
 
-## Related Resources
+## Support
 
-- [Fess Official Website](https://fess.codelibs.org/)
-- [Fess GitHub Repository](https://github.com/codelibs/fess)
-- [Fess Documentation](https://fess.codelibs.org/latest/)
-- [Docker Documentation](https://docs.docker.com/)
-- [Docker Compose Documentation](https://docs.docker.com/compose/)
+For issues or questions:
+- Check individual environment README files
+- Review container logs
+- Consult official documentation for each service
+- Open issue on GitHub if needed

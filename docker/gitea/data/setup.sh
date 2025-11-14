@@ -1,0 +1,57 @@
+#!/bin/bash
+# Gitea setup script
+
+echo "Waiting for Gitea to be ready..."
+for i in {1..60}; do
+    if curl -s http://localhost:3000/ > /dev/null 2>&1; then
+        echo "Gitea is ready!"
+        break
+    fi
+    echo "Waiting... ($i/60)"
+    sleep 2
+done
+
+echo ""
+echo "Gitea is running!"
+echo ""
+echo "================================================"
+echo "Initial Setup Required"
+echo "================================================"
+echo ""
+echo "1. Open http://localhost:3000 in your browser"
+echo "2. Complete the initial setup wizard"
+echo "3. Create an admin account"
+echo ""
+echo "Admin Account (recommended):"
+echo "  Username: admin"
+echo "  Password: admin123  (change after setup)"
+echo "  Email: admin@example.com"
+echo ""
+echo "================================================"
+echo "After Setup - Create Test Repository"
+echo "================================================"
+echo ""
+echo "Via Web UI:"
+echo "  1. Click '+' → New Repository"
+echo "  2. Name: test-repo"
+echo "  3. Check 'Initialize repository'"
+echo "  4. Click 'Create Repository'"
+echo ""
+echo "Via Git CLI:"
+echo "  mkdir test-repo && cd test-repo"
+echo "  git init"
+echo "  echo '# Test Repository' > README.md"
+echo "  echo 'Test content for Fess' >> README.md"
+echo "  git add ."
+echo "  git commit -m 'Initial commit'"
+echo "  git remote add origin http://localhost:3000/admin/test-repo.git"
+echo "  git push -u origin master"
+echo ""
+echo "================================================"
+echo "Useful URLs"
+echo "================================================"
+echo ""
+echo "Web UI: http://localhost:3000"
+echo "API: http://localhost:3000/api/v1"
+echo "SSH: localhost:2222"
+echo ""

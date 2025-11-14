@@ -1,0 +1,18 @@
+services:
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: mssql
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "MyStrongPass123!"
+      MSSQL_PID: "Express"
+      MSSQL_COLLATION: "Japanese_CI_AS"
+    ports:
+      - "1433:1433"
+    volumes:
+      - mssql_data:/var/opt/mssql
+      - ./data/sql:/docker-entrypoint-initdb.d
+    restart: unless-stopped
+
+volumes:
+  mssql_data:

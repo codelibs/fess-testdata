@@ -1,0 +1,19 @@
+services:
+  cassandra:
+    image: cassandra:4
+    container_name: cassandra
+    environment:
+      - CASSANDRA_CLUSTER_NAME=TestCluster
+      - CASSANDRA_DC=dc1
+      - CASSANDRA_ENDPOINT_SNITCH=GossipingPropertyFileSnitch
+      - MAX_HEAP_SIZE=512M
+      - HEAP_NEWSIZE=128M
+    ports:
+      - "9042:9042"
+      - "7199:7199"
+    volumes:
+      - cassandra_data:/var/lib/cassandra
+    restart: unless-stopped
+
+volumes:
+  cassandra_data:
