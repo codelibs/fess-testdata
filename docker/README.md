@@ -2,7 +2,7 @@
 
 This directory contains comprehensive Docker-based test environments for testing [Fess](https://fess.codelibs.org/) crawling capabilities across various data sources, protocols, and systems.
 
-## Available Environments (21 Total)
+## Available Environments (26 Total)
 
 ### Web Server Environments
 
@@ -155,6 +155,47 @@ This directory contains comprehensive Docker-based test environments for testing
 - **Start**: `cd gitea && docker compose up -d`
 - **Note**: Complete initial setup on first access
 
+### Project Management & Issue Tracking
+
+#### 21. Redmine (`redmine/`)
+- **Purpose**: Test Redmine project management and issue tracking
+- **Port**: 3001
+- **Admin**: admin / admin
+- **Database**: PostgreSQL (included)
+- **Start**: `cd redmine && docker compose up -d`
+- **Note**: Change admin password on first login
+
+#### 22. GitLab CE (`gitlab/`)
+- **Purpose**: Test GitLab DevOps platform (Git + Issues + CI/CD)
+- **Port**: 8929 (HTTP), 2289 (SSH)
+- **Admin**: root / gitlabadmin123
+- **Start**: `cd gitlab && docker compose up -d`
+- **Note**: Requires 4GB+ RAM, 3-5 min startup
+
+#### 23. Taiga (`taiga/`)
+- **Purpose**: Test Taiga agile project management (Scrum/Kanban)
+- **Port**: 9000
+- **Admin**: admin / 123123
+- **Database**: PostgreSQL (included)
+- **Start**: `cd taiga && docker compose up -d`
+- **Note**: Modern UI for agile teams
+
+#### 24. MantisBT (`mantis/`)
+- **Purpose**: Test MantisBT bug tracking system
+- **Port**: 8989
+- **Setup**: Complete wizard on first access
+- **Database**: MySQL (included)
+- **Start**: `cd mantis && docker compose up -d`
+- **Note**: Lightweight bug tracker
+
+#### 25. Bugzilla (`bugzilla/`)
+- **Purpose**: Test Bugzilla enterprise bug tracking
+- **Port**: 8990
+- **Admin**: admin@example.com / bugzilla123
+- **Database**: MySQL (included)
+- **Start**: `cd bugzilla && docker compose up -d`
+- **Note**: Mozilla's mature bug tracker
+
 ## Quick Start
 
 ### Start Specific Environment
@@ -204,15 +245,21 @@ Quick reference of all ports used:
 | 1139, 1445 | SMB, CIFS | samba |
 | 1433 | SQL Server | mssql |
 | 2222 | SSH (Git) | gitea |
+| 2289 | SSH (GitLab) | gitlab |
 | 3000 | Gitea Web | gitea |
+| 3001 | Redmine | redmine |
 | 3306 | MySQL | mysql |
 | 3307 | MariaDB | mariadb |
 | 5432 | PostgreSQL | postgresql |
 | 5984 | CouchDB | couchdb |
 | 6379 | Redis | redis |
 | 8080 | WordPress | wordpress |
+| 8929 | GitLab Web | gitlab |
 | 8983 | Apache Solr | solr |
-| 9000, 9001 | MinIO API, Console | minio |
+| 8989 | MantisBT | mantis |
+| 8990 | Bugzilla | bugzilla |
+| 9000 | Taiga, MinIO API | taiga, minio |
+| 9001 | MinIO Console | minio |
 | 9042, 7199 | Cassandra CQL, JMX | cassandra |
 | 9200, 9300 | Elasticsearch | elasticsearch |
 | 10021, 30000-30009 | FTP | ftp |
@@ -245,12 +292,13 @@ docker compose up -d
 
 ### By Data Type
 
-- **Web Content**: basic, digest, self_signed, wordpress, gitea
+- **Web Content**: basic, digest, self_signed, wordpress, gitea, gitlab
 - **Files**: ftp, samba, webdav, minio
 - **Structured Data**: mysql, postgresql, mariadb, mssql, mongodb
 - **Key-Value**: redis, couchdb
 - **Distributed**: cassandra, elasticsearch, solr
 - **Authentication**: ldap
+- **Project Management**: redmine, gitlab, taiga, mantis, bugzilla
 
 ### By Use Case
 
@@ -258,8 +306,11 @@ docker compose up -d
 - **Enterprise**: mssql + ldap
 - **Big Data**: cassandra + elasticsearch
 - **Cloud Storage**: minio + s3
-- **Development**: gitea + postgresql
+- **Development**: gitea/gitlab + postgresql
 - **Document Management**: webdav + postgresql
+- **Agile Teams**: taiga + scrum/kanban workflows
+- **Bug Tracking**: mantis/bugzilla + issue management
+- **DevOps**: gitlab + CI/CD pipelines
 
 ## Common Commands
 

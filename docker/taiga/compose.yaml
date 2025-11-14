@@ -1,0 +1,59 @@
+services:
+  taiga-db:
+    image: postgres:15
+    container_name: taiga-db
+    environment:
+      POSTGRES_DB: taiga
+      POSTGRES_USER: taiga
+      POSTGRES_PASSWORD: taiga
+    volumes:
+      - taiga_db_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  taiga-back:
+    image: taigaio/taiga-back:latest
+    container_name: taiga-back
+    environment:
+      POSTGRES_DB: taiga
+      POSTGRES_USER: taiga
+      POSTGRES_PASSWORD: taiga
+      POSTGRES_HOST: taiga-db
+      TAIGA_SECRET_KEY: "taiga-secret-key-for-testing"
+      TAIGA_SITES_SCHEME: "http"
+      TAIGA_SITES_DOMAIN: "localhost:9000"
+      TAIGA_SUBPATH: ""
+    volumes:
+      - taiga_static:/taiga-back/static
+      - taiga_media:/taiga-back/media
+    depends_on:
+      - taiga-db
+    restart: unless-stopped
+
+  taiga-front:
+    image: taigaio/taiga-front:latest
+    container_name: taiga-front
+    environment:
+      TAIGA_URL: "http://localhost:9000"
+      TAIGA_WEBSOCKETS_URL: "ws://localhost:9000"
+    depends_on:
+      - taiga-back
+    restart: unless-stopped
+
+  taiga-gateway:
+    image: nginx:alpine
+    container_name: taiga-gateway
+    ports:
+      - "9000:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - taiga_static:/taiga/static:ro
+      - taiga_media:/taiga/media:ro
+    depends_on:
+      - taiga-front
+      - taiga-back
+    restart: unless-stopped
+
+volumes:
+  taiga_db_data:
+  taiga_static:
+  taiga_media:
