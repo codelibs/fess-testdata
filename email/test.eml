@@ -1,0 +1,21 @@
+From: sender@example.com
+To: recipient@example.com
+Subject: Test Email - テストメール
+Date: Wed, 13 Nov 2024 12:00:00 +0900
+Message-ID: <test001@example.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+This is a test email message for Fess search indexing.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+吾輩は猫である。名前はまだない。
+
+テスト内容：
+- Fess検索テスト
+- インデックス作成テスト
+- 日本語コンテンツ対応
+
+Best regards,
+Fess Test Team

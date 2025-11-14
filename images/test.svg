@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="200" viewBox="0 0 400 200">
+  <title>Test Image</title>
+  <desc>Lorem ipsum. 吾輩は猫である。 Test image for Fess search indexing.</desc>
+  <metadata>
+    <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+             xmlns:dc="http://purl.org/dc/elements/1.1/">
+      <rdf:Description>
+        <dc:title>Test Image</dc:title>
+        <dc:description>Lorem ipsum. 吾輩は猫である。</dc:description>
+        <dc:creator>Fess Test</dc:creator>
+        <dc:subject>test, fess, search, indexing</dc:subject>
+      </rdf:Description>
+    </rdf:RDF>
+  </metadata>
+  <rect width="100%" height="100%" fill="#f0f0f0"/>
+  <text x="20" y="40" font-family="Arial" font-size="16" fill="black">Lorem ipsum dolor sit amet</text>
+  <text x="20" y="70" font-family="Arial" font-size="16" fill="black">吾輩は猫である。名前はまだない。</text>
+  <text x="20" y="100" font-family="Arial" font-size="14" fill="#666">Test image for Fess search indexing</text>
+</svg>

@@ -1,0 +1,75 @@
+{
+  "type": "FeatureCollection",
+  "name": "Test GeoJSON for Fess Search Indexing",
+  "description": "Lorem ipsum dolor sit amet. 吾輩は猫である。",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Tokyo Tower",
+        "name_ja": "東京タワー",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "description_ja": "吾輩は猫である。名前はまだない。",
+        "type": "landmark",
+        "test_content": "Test location for Fess indexing"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [139.7454, 35.6586]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Shibuya Crossing",
+        "name_ja": "渋谷スクランブル交差点",
+        "description": "Famous pedestrian crossing - Lorem ipsum",
+        "description_ja": "有名な横断歩道 - 吾輩は猫である",
+        "type": "landmark",
+        "test_content": "全文検索テスト"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [139.7005, 35.6595]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Test Route",
+        "name_ja": "テストルート",
+        "description": "Lorem ipsum dolor sit amet route",
+        "description_ja": "吾輩は猫である - ルートテスト",
+        "type": "route"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [139.7454, 35.6586],
+          [139.7005, 35.6595],
+          [139.6917, 35.6895]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Test Area",
+        "name_ja": "テストエリア",
+        "description": "Lorem ipsum test area for Fess",
+        "description_ja": "Fess用の吾輩は猫であるテストエリア",
+        "type": "area"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [139.7, 35.65],
+          [139.75, 35.65],
+          [139.75, 35.67],
+          [139.7, 35.67],
+          [139.7, 35.65]
+        ]]
+      }
+    }
+  ]
+}

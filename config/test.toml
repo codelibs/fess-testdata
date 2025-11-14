@@ -1,0 +1,52 @@
+# Test TOML configuration file for Fess search indexing
+# テスト用TOML設定ファイル
+# Lorem ipsum dolor sit amet
+# 吾輩は猫である
+
+[general]
+# Application settings - Lorem ipsum
+app_name = "Test Application"
+version = "1.0.0"
+description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+author = "Fess Test Team"
+
+[database]
+# Database configuration - 吾輩は猫である
+host = "localhost"
+port = 3306
+database = "test_db"
+username = "testuser"
+password = "testpass"
+charset = "utf8mb4"
+pool_size = 10
+
+[database.options]
+reconnect = true
+timeout = 30
+
+[search]
+# Search engine settings - Lorem ipsum
+engine = "Fess"
+index_name = "test_index"
+max_results = 100
+enable_highlight = true
+default_language = "ja"
+analyzers = ["japanese", "english", "cjk"]
+
+[search.features]
+full_text_search = true
+fuzzy_search = true
+autocomplete = true
+spell_check = false
+
+[localization]
+# 吾輩は猫である
+default_locale = "ja_JP"
+supported_locales = ["ja_JP", "en_US", "zh_CN"]
+timezone = "Asia/Tokyo"
+test_content = "吾輩は猫である。名前はまだない。"
+
+[test_phrases]
+japanese = "吾輩は猫である。名前はまだない。"
+latin = "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+description = "This is a test TOML file for Fess search indexing"

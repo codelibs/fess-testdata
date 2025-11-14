@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>Test KML for Fess Search Indexing</name>
+    <description>Lorem ipsum dolor sit amet. 吾輩は猫である。</description>
+
+    <Placemark>
+      <name>Tokyo Tower - 東京タワー</name>
+      <description>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        吾輩は猫である。名前はまだない。
+        Test location for Fess indexing - Fess検索インデックス用テスト場所
+      </description>
+      <Point>
+        <coordinates>139.7454,35.6586,0</coordinates>
+      </Point>
+    </Placemark>
+
+    <Placemark>
+      <name>Shibuya Crossing - 渋谷スクランブル交差点</name>
+      <description>
+        Famous pedestrian crossing - Lorem ipsum
+        有名な横断歩道 - 吾輩は猫である
+        全文検索テスト - Full-text search test
+      </description>
+      <Point>
+        <coordinates>139.7005,35.6595,0</coordinates>
+      </Point>
+    </Placemark>
+
+    <Placemark>
+      <name>Test Route - テストルート</name>
+      <description>
+        Lorem ipsum dolor sit amet route
+        吾輩は猫である - ルートテスト
+      </description>
+      <LineString>
+        <coordinates>
+          139.7454,35.6586,0
+          139.7005,35.6595,0
+          139.6917,35.6895,0
+        </coordinates>
+      </LineString>
+    </Placemark>
+
+    <Placemark>
+      <name>Test Area - テストエリア</name>
+      <description>
+        Lorem ipsum test area for Fess
+        Fess用の吾輩は猫であるテストエリア
+        This polygon represents a test search area - このポリゴンはテスト検索エリアを表します
+      </description>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>
+              139.7,35.65,0
+              139.75,35.65,0
+              139.75,35.67,0
+              139.7,35.67,0
+              139.7,35.65,0
+            </coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+
+  </Document>
+</kml>
