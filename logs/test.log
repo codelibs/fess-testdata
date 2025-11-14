@@ -1,0 +1,33 @@
+2024-11-13 10:00:00 INFO  [main] Application started - Lorem ipsum dolor sit amet
+2024-11-13 10:00:01 INFO  [main] Loading configuration from config.yaml
+2024-11-13 10:00:02 INFO  [main] Database connection established - 吾輩は猫である
+2024-11-13 10:00:03 DEBUG [worker-1] Processing search request: "Lorem ipsum"
+2024-11-13 10:00:04 DEBUG [worker-1] Found 150 results for query "Lorem ipsum"
+2024-11-13 10:00:05 INFO  [worker-2] Indexing document: test.pdf
+2024-11-13 10:00:06 DEBUG [worker-2] Extracted text content: 吾輩は猫である。名前はまだない。
+2024-11-13 10:00:07 INFO  [worker-2] Document indexed successfully
+2024-11-13 10:00:08 WARN  [worker-3] Slow query detected: execution time 5000ms
+2024-11-13 10:00:09 INFO  [scheduler] Starting scheduled crawl job
+2024-11-13 10:00:10 DEBUG [crawler] Crawling URL: https://example.com/test
+2024-11-13 10:00:11 DEBUG [crawler] Page content: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+2024-11-13 10:00:12 INFO  [crawler] Crawled 1 page successfully
+2024-11-13 10:00:13 DEBUG [indexer] Adding document to index: doc_001
+2024-11-13 10:00:14 DEBUG [indexer] Document fields: title="Test Document", content="吾輩は猫である"
+2024-11-13 10:00:15 INFO  [indexer] Document committed to index
+2024-11-13 10:00:16 INFO  [search] Search query received: "全文検索テスト"
+2024-11-13 10:00:17 DEBUG [search] Query analysis: language=ja, analyzer=japanese
+2024-11-13 10:00:18 DEBUG [search] Retrieved 45 matching documents
+2024-11-13 10:00:19 INFO  [search] Search completed in 150ms
+2024-11-13 10:00:20 ERROR [worker-4] Failed to process document: connection timeout
+2024-11-13 10:00:21 WARN  [worker-4] Retrying operation (attempt 1/3)
+2024-11-13 10:00:22 INFO  [worker-4] Retry successful
+2024-11-13 10:00:23 DEBUG [cache] Cache hit for key: search_result_lorem_ipsum
+2024-11-13 10:00:24 INFO  [metrics] Current index size: 10,523 documents
+2024-11-13 10:00:25 INFO  [metrics] Total searches today: 1,234
+2024-11-13 10:00:26 DEBUG [cleanup] Starting cleanup job
+2024-11-13 10:00:27 DEBUG [cleanup] Removing expired cache entries
+2024-11-13 10:00:28 INFO  [cleanup] Cleanup completed - removed 50 entries
+2024-11-13 10:00:29 INFO  [main] テスト完了 - All systems operational
+2024-11-13 10:00:30 DEBUG [monitor] System health check: OK
+2024-11-13 10:00:31 INFO  [monitor] CPU usage: 45%, Memory: 2.5GB/8GB
+2024-11-13 10:00:32 INFO  [monitor] Fess search engine running smoothly

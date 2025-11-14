@@ -1,0 +1,35 @@
+--- a/config/settings.json
++++ b/config/settings.json
+@@ -1,8 +1,12 @@
+ {
+   "app_name": "Fess Test Application",
+   "version": "1.0.0",
+-  "description": "Lorem ipsum",
++  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
++  "japanese_description": "吾輩は猫である。名前はまだない。",
+   "search": {
+     "engine": "Fess",
+-    "max_results": 50
++    "max_results": 100,
++    "enable_highlight": true,
++    "analyzers": ["japanese", "english", "cjk"],
++    "test_content": "吾輩は猫である - Lorem ipsum"
+   }
+ }
+--- a/src/index.html
++++ b/src/index.html
+@@ -5,10 +5,15 @@
+     <title>Test Document</title>
+ </head>
+ <body>
+-    <h1>Test</h1>
+-    <p>Lorem ipsum dolor sit amet.</p>
++    <h1>Test Document - テストドキュメント</h1>
++    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
++    <p>吾輩は猫である。名前はまだない。</p>
++
++    <h2>Search Test - 検索テスト</h2>
++    <p>This is a test document for Fess search indexing.</p>
++    <p>これはFess検索インデックス作成用のテストドキュメントです。</p>
+ </body>
+ </html>

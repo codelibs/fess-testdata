@@ -1,0 +1,40 @@
+diff --git a/src/search.py b/src/search.py
+index 1234567..abcdefg 100644
+--- a/src/search.py
++++ b/src/search.py
+@@ -1,10 +1,15 @@
+ #!/usr/bin/env python3
+ # Test search module
++# テスト検索モジュール
+ # Lorem ipsum dolor sit amet
++# 吾輩は猫である
+
+ def search_text(query):
+-    """Search function - Lorem ipsum"""
+-    print(f"Searching for: {query}")
++    """
++    Search function - Lorem ipsum
++    検索関数 - 吾輩は猫である
++    """
++    print(f"Searching for: {query} - 検索中: {query}")
+     return []
+
+ class SearchEngine:
+@@ -15,6 +20,7 @@ class SearchEngine:
+     def __init__(self, index_name):
+         self.index_name = index_name
++        self.description = "吾輩は猫である。名前はまだない。"
+
+     def search(self, query):
+         """Execute search - Lorem ipsum"""
+@@ -23,4 +29,10 @@ class SearchEngine:
+             'total': 0,
+             'results': []
+         }
++
++    def index_document(self, doc):
++        """Index a document - ドキュメントをインデックス化"""
++        print(f"Indexing: {doc}")
++        # Lorem ipsum indexing logic
++        # 吾輩は猫である - インデックス化ロジック
++        return True

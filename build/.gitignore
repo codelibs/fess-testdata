@@ -1,0 +1,69 @@
+# Test .gitignore for Fess search indexing
+# テスト用.gitignore
+# Lorem ipsum dolor sit amet
+# 吾輩は猫である
+
+# Build directories - ビルドディレクトリ
+build/
+dist/
+target/
+out/
+
+# Dependency directories - 依存関係ディレクトリ
+node_modules/
+vendor/
+lib/
+
+# IDE files - IDE関連ファイル
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files - OS関連ファイル
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Log files - ログファイル
+*.log
+logs/
+
+# Temporary files - 一時ファイル
+*.tmp
+*.temp
+*.cache
+
+# Database files - データベースファイル
+*.db
+*.sqlite
+*.sqlite3
+
+# Compiled files - コンパイル済みファイル
+*.pyc
+*.pyo
+__pycache__/
+*.class
+*.o
+
+# Package files - パッケージファイル
+*.zip
+*.tar.gz
+*.rar
+
+# Environment files - 環境設定ファイル
+.env
+.env.local
+.env.*.local
+
+# Test coverage - テストカバレッジ
+coverage/
+.coverage
+*.cover
+
+# Lorem ipsum ignore patterns
+lorem-ipsum-temp/
+
+# 吾輩は猫である - 日本語パターン
+test-temp-*.txt
