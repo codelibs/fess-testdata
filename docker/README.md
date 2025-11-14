@@ -2,7 +2,7 @@
 
 This directory contains comprehensive Docker-based test environments for testing [Fess](https://fess.codelibs.org/) crawling capabilities across various data sources, protocols, and systems.
 
-## Available Environments (25 Total)
+## Available Environments (27 Total)
 
 ### Web Server Environments
 
@@ -74,30 +74,48 @@ This directory contains comprehensive Docker-based test environments for testing
 - **Start**: `cd mssql && docker compose up -d`
 - **Note**: Requires 2GB+ RAM
 
+### Enterprise Database Environments
+
+#### 11. Oracle Database XE (`oracle/`)
+- **Purpose**: Test Oracle Database crawling
+- **Port**: 1521 (DB), 5500 (EM Express)
+- **Database**: XEPDB1
+- **Credentials**: system / Oracle123, testuser / testpass
+- **Start**: `cd oracle && docker compose up -d`
+- **Note**: Requires 2GB+ RAM, 2-3 min startup, free for dev/test
+
+#### 12. IBM DB2 (`db2/`)
+- **Purpose**: Test IBM DB2 database crawling
+- **Port**: 50000
+- **Database**: testdb
+- **Credentials**: db2inst1 / db2inst1
+- **Start**: `cd db2 && docker compose up -d`
+- **Note**: Requires 4GB+ RAM, 3-5 min startup, privileged mode
+
 ### NoSQL Database Environments
 
-#### 11. MongoDB (`mongodb/`)
+#### 13. MongoDB (`mongodb/`)
 - **Purpose**: Test MongoDB document database crawling
 - **Port**: 27017
 - **Database**: testdb
 - **Credentials**: admin / admin123
 - **Start**: `cd mongodb && docker compose up -d`
 
-#### 12. CouchDB (`couchdb/`)
+#### 14. CouchDB (`couchdb/`)
 - **Purpose**: Test CouchDB document database crawling
 - **Port**: 5984
 - **Web UI**: http://localhost:5984/_utils/
 - **Credentials**: admin / admin123
 - **Start**: `cd couchdb && docker compose up -d`
 
-#### 13. Cassandra (`cassandra/`)
+#### 15. Cassandra (`cassandra/`)
 - **Purpose**: Test Cassandra distributed database crawling
 - **Port**: 9042 (CQL)
 - **Keyspace**: testdb
 - **Start**: `cd cassandra && docker compose up -d`
 - **Note**: Requires 2GB+ RAM, 60-90s startup time
 
-#### 14. Redis (`redis/`)
+#### 16. Redis (`redis/`)
 - **Purpose**: Test Redis key-value store crawling
 - **Port**: 6379
 - **Password**: redis123
@@ -105,14 +123,14 @@ This directory contains comprehensive Docker-based test environments for testing
 
 ### Search Engine Environments
 
-#### 15. Elasticsearch (`elasticsearch/`)
+#### 17. Elasticsearch (`elasticsearch/`)
 - **Purpose**: Test Elasticsearch search engine integration
 - **Port**: 9200 (HTTP), 9300 (Transport)
 - **Index**: documents
 - **Start**: `cd elasticsearch && docker compose up -d`
 - **Note**: Fess uses Elasticsearch internally
 
-#### 16. Apache Solr (`solr/`)
+#### 18. Apache Solr (`solr/`)
 - **Purpose**: Test Apache Solr search platform integration
 - **Port**: 8983
 - **Core**: documents
@@ -121,7 +139,7 @@ This directory contains comprehensive Docker-based test environments for testing
 
 ### Object Storage & Cloud
 
-#### 17. MinIO (`minio/`)
+#### 19. MinIO (`minio/`)
 - **Purpose**: Test S3-compatible object storage crawling
 - **API Port**: 9000
 - **Console Port**: 9001
@@ -131,7 +149,7 @@ This directory contains comprehensive Docker-based test environments for testing
 
 ### Directory Service
 
-#### 18. LDAP (`ldap/`)
+#### 20. LDAP (`ldap/`)
 - **Purpose**: Test LDAP authentication and directory services
 - **Ports**: 389 (LDAP), 636 (LDAPS), 8081 (phpLDAPadmin)
 - **Admin DN**: cn=admin,dc=fess,dc=codelibs,dc=org
@@ -140,7 +158,7 @@ This directory contains comprehensive Docker-based test environments for testing
 
 ### Content Management & Collaboration
 
-#### 19. WordPress (`wordpress/`)
+#### 21. WordPress (`wordpress/`)
 - **Purpose**: Test WordPress CMS content crawling
 - **Port**: 8080
 - **Admin**: http://localhost:8080/wp-admin
@@ -148,7 +166,7 @@ This directory contains comprehensive Docker-based test environments for testing
 - **Start**: `cd wordpress && docker compose up -d`
 - **Note**: Complete setup wizard on first access
 
-#### 20. Gitea (`gitea/`)
+#### 22. Gitea (`gitea/`)
 - **Purpose**: Test Git repository and code search
 - **Port**: 3000 (HTTP), 2222 (SSH)
 - **Web UI**: http://localhost:3000
@@ -157,7 +175,7 @@ This directory contains comprehensive Docker-based test environments for testing
 
 ### Project Management & Issue Tracking
 
-#### 21. Redmine (`redmine/`)
+#### 23. Redmine (`redmine/`)
 - **Purpose**: Test Redmine project management and issue tracking
 - **Port**: 3001
 - **Admin**: admin / admin
@@ -165,14 +183,14 @@ This directory contains comprehensive Docker-based test environments for testing
 - **Start**: `cd redmine && docker compose up -d`
 - **Note**: Change admin password on first login
 
-#### 22. GitLab CE (`gitlab/`)
+#### 24. GitLab CE (`gitlab/`)
 - **Purpose**: Test GitLab DevOps platform (Git + Issues + CI/CD)
 - **Port**: 8929 (HTTP), 2289 (SSH)
 - **Admin**: root / gitlabadmin123
 - **Start**: `cd gitlab && docker compose up -d`
 - **Note**: Requires 4GB+ RAM, 3-5 min startup
 
-#### 23. Taiga (`taiga/`)
+#### 25. Taiga (`taiga/`)
 - **Purpose**: Test Taiga agile project management (Scrum/Kanban)
 - **Port**: 9000
 - **Admin**: admin / 123123
@@ -180,7 +198,7 @@ This directory contains comprehensive Docker-based test environments for testing
 - **Start**: `cd taiga && docker compose up -d`
 - **Note**: Modern UI for agile teams
 
-#### 24. MantisBT (`mantis/`)
+#### 26. MantisBT (`mantis/`)
 - **Purpose**: Test MantisBT bug tracking system
 - **Port**: 8989
 - **Setup**: Complete wizard on first access
@@ -188,7 +206,7 @@ This directory contains comprehensive Docker-based test environments for testing
 - **Start**: `cd mantis && docker compose up -d`
 - **Note**: Lightweight bug tracker
 
-#### 25. Bugzilla (`bugzilla/`)
+#### 27. Bugzilla (`bugzilla/`)
 - **Purpose**: Test Bugzilla enterprise bug tracking
 - **Port**: 8990
 - **Admin**: admin@example.com / bugzilla123
@@ -244,6 +262,7 @@ Quick reference of all ports used:
 | 389, 636, 8081 | LDAP, LDAPS, phpLDAPadmin | ldap |
 | 1139, 1445 | SMB, CIFS | samba |
 | 1433 | SQL Server | mssql |
+| 1521, 5500 | Oracle DB, EM Express | oracle |
 | 2222 | SSH (Git) | gitea |
 | 2289 | SSH (GitLab) | gitlab |
 | 3000 | Gitea Web | gitea |
@@ -267,6 +286,7 @@ Quick reference of all ports used:
 | 10443 | HTTPS | basic, self_signed |
 | 18080 | HTTP (Digest Auth) | digest |
 | 27017 | MongoDB | mongodb |
+| 50000 | DB2 Database | db2 |
 
 ## Docker Compose V2
 
@@ -294,7 +314,7 @@ docker compose up -d
 
 - **Web Content**: basic, digest, self_signed, wordpress, gitea, gitlab
 - **Files**: ftp, samba, webdav, minio
-- **Structured Data**: mysql, postgresql, mariadb, mssql, mongodb
+- **Structured Data**: mysql, postgresql, mariadb, mssql, oracle, db2, mongodb
 - **Key-Value**: redis, couchdb
 - **Distributed**: cassandra, elasticsearch, solr
 - **Authentication**: ldap
@@ -303,7 +323,7 @@ docker compose up -d
 ### By Use Case
 
 - **E-commerce**: wordpress + mysql
-- **Enterprise**: mssql + ldap
+- **Enterprise**: oracle/db2/mssql + ldap
 - **Big Data**: cassandra + elasticsearch
 - **Cloud Storage**: minio + s3
 - **Development**: gitea/gitlab + postgresql
