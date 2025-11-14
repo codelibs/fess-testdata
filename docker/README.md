@@ -2,7 +2,7 @@
 
 This directory contains comprehensive Docker-based test environments for testing [Fess](https://fess.codelibs.org/) crawling capabilities across various data sources, protocols, and systems.
 
-## Available Environments (26 Total)
+## Available Environments (25 Total)
 
 ### Web Server Environments
 
