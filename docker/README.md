@@ -2,7 +2,7 @@
 
 This directory contains comprehensive Docker-based test environments for testing [Fess](https://fess.codelibs.org/) crawling capabilities across various data sources, protocols, and systems.
 
-## Available Environments (27 Total)
+## Available Environments (29 Total)
 
 ### Web Server Environments
 
@@ -92,30 +92,49 @@ This directory contains comprehensive Docker-based test environments for testing
 - **Start**: `cd db2 && docker compose up -d`
 - **Note**: Requires 4GB+ RAM, 3-5 min startup, privileged mode
 
+### Identity and Access Management (IAM)
+
+#### 13. Keycloak (`keycloak/`)
+- **Purpose**: Test OpenID Connect, OAuth 2.0, and SAML 2.0 authentication
+- **Port**: 8180
+- **Admin Console**: http://localhost:8180/admin
+- **Credentials**: admin / admin
+- **Pre-configured Realm**: fess (with test users and clients)
+- **Start**: `cd keycloak && docker compose up -d`
+- **Note**: Requires 1-2GB RAM, 30-60s startup time
+
+#### 14. Authentik (`authentik/`)
+- **Purpose**: Test modern IAM with OpenID Connect, SAML 2.0, and LDAP
+- **Port**: 9443 (HTTP), 9444 (HTTPS)
+- **Admin Interface**: http://localhost:9443/if/admin/
+- **Initial Setup**: http://localhost:9443/if/flow/initial-setup/
+- **Start**: `cd authentik && docker compose up -d`
+- **Note**: Requires 1-2GB RAM, 45-90s startup time
+
 ### NoSQL Database Environments
 
-#### 13. MongoDB (`mongodb/`)
+#### 15. MongoDB (`mongodb/`)
 - **Purpose**: Test MongoDB document database crawling
 - **Port**: 27017
 - **Database**: testdb
 - **Credentials**: admin / admin123
 - **Start**: `cd mongodb && docker compose up -d`
 
-#### 14. CouchDB (`couchdb/`)
+#### 16. CouchDB (`couchdb/`)
 - **Purpose**: Test CouchDB document database crawling
 - **Port**: 5984
 - **Web UI**: http://localhost:5984/_utils/
 - **Credentials**: admin / admin123
 - **Start**: `cd couchdb && docker compose up -d`
 
-#### 15. Cassandra (`cassandra/`)
+#### 17. Cassandra (`cassandra/`)
 - **Purpose**: Test Cassandra distributed database crawling
 - **Port**: 9042 (CQL)
 - **Keyspace**: testdb
 - **Start**: `cd cassandra && docker compose up -d`
 - **Note**: Requires 2GB+ RAM, 60-90s startup time
 
-#### 16. Redis (`redis/`)
+#### 18. Redis (`redis/`)
 - **Purpose**: Test Redis key-value store crawling
 - **Port**: 6379
 - **Password**: redis123
@@ -123,14 +142,14 @@ This directory contains comprehensive Docker-based test environments for testing
 
 ### Search Engine Environments
 
-#### 17. Elasticsearch (`elasticsearch/`)
+#### 19. Elasticsearch (`elasticsearch/`)
 - **Purpose**: Test Elasticsearch search engine integration
 - **Port**: 9200 (HTTP), 9300 (Transport)
 - **Index**: documents
 - **Start**: `cd elasticsearch && docker compose up -d`
 - **Note**: Fess uses Elasticsearch internally
 
-#### 18. Apache Solr (`solr/`)
+#### 20. Apache Solr (`solr/`)
 - **Purpose**: Test Apache Solr search platform integration
 - **Port**: 8983
 - **Core**: documents
@@ -139,7 +158,7 @@ This directory contains comprehensive Docker-based test environments for testing
 
 ### Object Storage & Cloud
 
-#### 19. MinIO (`minio/`)
+#### 21. MinIO (`minio/`)
 - **Purpose**: Test S3-compatible object storage crawling
 - **API Port**: 9000
 - **Console Port**: 9001
@@ -149,7 +168,7 @@ This directory contains comprehensive Docker-based test environments for testing
 
 ### Directory Service
 
-#### 20. LDAP (`ldap/`)
+#### 22. LDAP (`ldap/`)
 - **Purpose**: Test LDAP authentication and directory services
 - **Ports**: 389 (LDAP), 636 (LDAPS), 8081 (phpLDAPadmin)
 - **Admin DN**: cn=admin,dc=fess,dc=codelibs,dc=org
@@ -158,7 +177,7 @@ This directory contains comprehensive Docker-based test environments for testing
 
 ### Content Management & Collaboration
 
-#### 21. WordPress (`wordpress/`)
+#### 23. WordPress (`wordpress/`)
 - **Purpose**: Test WordPress CMS content crawling
 - **Port**: 8080
 - **Admin**: http://localhost:8080/wp-admin
@@ -166,7 +185,7 @@ This directory contains comprehensive Docker-based test environments for testing
 - **Start**: `cd wordpress && docker compose up -d`
 - **Note**: Complete setup wizard on first access
 
-#### 22. Gitea (`gitea/`)
+#### 24. Gitea (`gitea/`)
 - **Purpose**: Test Git repository and code search
 - **Port**: 3000 (HTTP), 2222 (SSH)
 - **Web UI**: http://localhost:3000
@@ -175,7 +194,7 @@ This directory contains comprehensive Docker-based test environments for testing
 
 ### Project Management & Issue Tracking
 
-#### 23. Redmine (`redmine/`)
+#### 25. Redmine (`redmine/`)
 - **Purpose**: Test Redmine project management and issue tracking
 - **Port**: 3001
 - **Admin**: admin / admin
@@ -183,14 +202,14 @@ This directory contains comprehensive Docker-based test environments for testing
 - **Start**: `cd redmine && docker compose up -d`
 - **Note**: Change admin password on first login
 
-#### 24. GitLab CE (`gitlab/`)
+#### 26. GitLab CE (`gitlab/`)
 - **Purpose**: Test GitLab DevOps platform (Git + Issues + CI/CD)
 - **Port**: 8929 (HTTP), 2289 (SSH)
 - **Admin**: root / gitlabadmin123
 - **Start**: `cd gitlab && docker compose up -d`
 - **Note**: Requires 4GB+ RAM, 3-5 min startup
 
-#### 25. Taiga (`taiga/`)
+#### 27. Taiga (`taiga/`)
 - **Purpose**: Test Taiga agile project management (Scrum/Kanban)
 - **Port**: 9000
 - **Admin**: admin / 123123
@@ -198,7 +217,7 @@ This directory contains comprehensive Docker-based test environments for testing
 - **Start**: `cd taiga && docker compose up -d`
 - **Note**: Modern UI for agile teams
 
-#### 26. MantisBT (`mantis/`)
+#### 28. MantisBT (`mantis/`)
 - **Purpose**: Test MantisBT bug tracking system
 - **Port**: 8989
 - **Setup**: Complete wizard on first access
@@ -206,7 +225,7 @@ This directory contains comprehensive Docker-based test environments for testing
 - **Start**: `cd mantis && docker compose up -d`
 - **Note**: Lightweight bug tracker
 
-#### 27. Bugzilla (`bugzilla/`)
+#### 29. Bugzilla (`bugzilla/`)
 - **Purpose**: Test Bugzilla enterprise bug tracking
 - **Port**: 8990
 - **Admin**: admin@example.com / bugzilla123
@@ -273,12 +292,14 @@ Quick reference of all ports used:
 | 5984 | CouchDB | couchdb |
 | 6379 | Redis | redis |
 | 8080 | WordPress | wordpress |
+| 8180 | Keycloak | keycloak |
 | 8929 | GitLab Web | gitlab |
 | 8983 | Apache Solr | solr |
 | 8989 | MantisBT | mantis |
 | 8990 | Bugzilla | bugzilla |
 | 9000 | Taiga, MinIO API | taiga, minio |
 | 9001 | MinIO Console | minio |
+| 9443, 9444 | Authentik HTTP, HTTPS | authentik |
 | 9042, 7199 | Cassandra CQL, JMX | cassandra |
 | 9200, 9300 | Elasticsearch | elasticsearch |
 | 10021, 30000-30009 | FTP | ftp |
@@ -317,13 +338,14 @@ docker compose up -d
 - **Structured Data**: mysql, postgresql, mariadb, mssql, oracle, db2, mongodb
 - **Key-Value**: redis, couchdb
 - **Distributed**: cassandra, elasticsearch, solr
-- **Authentication**: ldap
+- **Authentication & IAM**: ldap, keycloak, authentik
 - **Project Management**: redmine, gitlab, taiga, mantis, bugzilla
 
 ### By Use Case
 
 - **E-commerce**: wordpress + mysql
-- **Enterprise**: oracle/db2/mssql + ldap
+- **Enterprise**: oracle/db2/mssql + ldap/keycloak
+- **Single Sign-On (SSO)**: keycloak/authentik + OpenID Connect/SAML
 - **Big Data**: cassandra + elasticsearch
 - **Cloud Storage**: minio + s3
 - **Development**: gitea/gitlab + postgresql
