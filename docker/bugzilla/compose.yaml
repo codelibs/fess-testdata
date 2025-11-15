@@ -1,0 +1,37 @@
+services:
+  bugzilla-db:
+    image: mysql:8.0
+    container_name: bugzilla-db
+    environment:
+      MYSQL_ROOT_PASSWORD: bugzilla
+      MYSQL_DATABASE: bugs
+      MYSQL_USER: bugs
+      MYSQL_PASSWORD: bugs
+    volumes:
+      - bugzilla_db_data:/var/lib/mysql
+    restart: unless-stopped
+    command: --default-authentication-plugin=mysql_native_password --max_allowed_packet=64M
+
+  bugzilla:
+    image: bugzilla/bugzilla:latest
+    container_name: bugzilla
+    depends_on:
+      - bugzilla-db
+    ports:
+      - "8990:80"
+    environment:
+      BUGZILLA_URL: "http://localhost:8990"
+      MYSQL_HOST: bugzilla-db
+      MYSQL_DATABASE: bugs
+      MYSQL_USER: bugs
+      MYSQL_PASSWORD: bugs
+      ADMIN_EMAIL: admin@example.com
+      ADMIN_PASSWORD: bugzilla123
+      ADMIN_REALNAME: "Bugzilla Admin"
+    volumes:
+      - bugzilla_data:/var/www/html/bugzilla
+    restart: unless-stopped
+
+volumes:
+  bugzilla_db_data:
+  bugzilla_data:

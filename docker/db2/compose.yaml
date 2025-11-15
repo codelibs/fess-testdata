@@ -1,0 +1,21 @@
+services:
+  db2:
+    image: icr.io/db2_community/db2:latest
+    container_name: db2
+    privileged: true
+    ports:
+      - "50000:50000"
+    environment:
+      LICENSE: accept
+      DB2INSTANCE: db2inst1
+      DB2INST1_PASSWORD: db2inst1
+      DBNAME: testdb
+      ARCHIVE_LOGS: "false"
+      AUTOCONFIG: "true"
+    volumes:
+      - db2_data:/database
+      - ./data/scripts:/var/custom
+    restart: unless-stopped
+
+volumes:
+  db2_data:

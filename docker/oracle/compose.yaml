@@ -1,0 +1,19 @@
+services:
+  oracle:
+    image: gvenzl/oracle-xe:latest
+    container_name: oracle
+    ports:
+      - "1521:1521"
+      - "5500:5500"
+    environment:
+      ORACLE_PASSWORD: Oracle123
+      APP_USER: testuser
+      APP_USER_PASSWORD: testpass
+      ORACLE_DATABASE: testdb
+    volumes:
+      - oracle_data:/opt/oracle/oradata
+      - ./data/scripts:/opt/oracle/scripts/startup
+    restart: unless-stopped
+
+volumes:
+  oracle_data:

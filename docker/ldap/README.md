@@ -5,10 +5,16 @@ LDAP Testing Environment
 
 This repository is LDAP test environment for Fess.
 
-### Start LDAP Sever and phpMyAdmin
+### Start LDAP Server and phpLDAPadmin
 
+```bash
+docker compose up -d
 ```
-$ docker-compose up
+
+### Stop Services
+
+```bash
+docker compose down
 ```
 
 ### Import Data

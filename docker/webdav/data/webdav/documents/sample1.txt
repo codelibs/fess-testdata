@@ -1,0 +1,1 @@
+Sample WebDAV document for Fess crawling test.

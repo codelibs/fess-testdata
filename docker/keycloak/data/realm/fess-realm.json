@@ -1,0 +1,147 @@
+{
+  "realm": "fess",
+  "enabled": true,
+  "displayName": "Fess Test Realm",
+  "displayNameHtml": "<div class=\"kc-logo-text\"><span>Fess Test Realm</span></div>",
+  "sslRequired": "none",
+  "registrationAllowed": false,
+  "loginWithEmailAllowed": true,
+  "duplicateEmailsAllowed": false,
+  "resetPasswordAllowed": true,
+  "editUsernameAllowed": false,
+  "bruteForceProtected": true,
+  "clients": [
+    {
+      "clientId": "fess-client",
+      "name": "Fess OIDC Client",
+      "description": "OpenID Connect client for Fess crawler",
+      "enabled": true,
+      "clientAuthenticatorType": "client-secret",
+      "secret": "fess-secret-key-12345",
+      "redirectUris": [
+        "http://localhost:8080/*",
+        "http://localhost/*"
+      ],
+      "webOrigins": [
+        "http://localhost:8080",
+        "http://localhost"
+      ],
+      "protocol": "openid-connect",
+      "publicClient": false,
+      "standardFlowEnabled": true,
+      "directAccessGrantsEnabled": true,
+      "serviceAccountsEnabled": true,
+      "defaultClientScopes": [
+        "web-origins",
+        "acr",
+        "profile",
+        "roles",
+        "email"
+      ]
+    },
+    {
+      "clientId": "fess-saml-client",
+      "name": "Fess SAML Client",
+      "description": "SAML 2.0 client for Fess crawler",
+      "enabled": true,
+      "protocol": "saml",
+      "adminUrl": "http://localhost:8080/admin/saml",
+      "redirectUris": [
+        "http://localhost:8080/*"
+      ],
+      "attributes": {
+        "saml.authnstatement": "true",
+        "saml.server.signature": "true",
+        "saml.signature.algorithm": "RSA_SHA256",
+        "saml.client.signature": "false"
+      },
+      "fullScopeAllowed": true
+    }
+  ],
+  "users": [
+    {
+      "username": "testuser",
+      "enabled": true,
+      "emailVerified": true,
+      "firstName": "Test",
+      "lastName": "User",
+      "email": "testuser@example.com",
+      "credentials": [
+        {
+          "type": "password",
+          "value": "password123",
+          "temporary": false
+        }
+      ],
+      "realmRoles": [
+        "user"
+      ],
+      "attributes": {
+        "department": ["Engineering"],
+        "position": ["Developer"]
+      }
+    },
+    {
+      "username": "admin",
+      "enabled": true,
+      "emailVerified": true,
+      "firstName": "Admin",
+      "lastName": "User",
+      "email": "admin@example.com",
+      "credentials": [
+        {
+          "type": "password",
+          "value": "admin123",
+          "temporary": false
+        }
+      ],
+      "realmRoles": [
+        "admin"
+      ]
+    },
+    {
+      "username": "田中太郎",
+      "enabled": true,
+      "emailVerified": true,
+      "firstName": "太郎",
+      "lastName": "田中",
+      "email": "tanaka@example.jp",
+      "credentials": [
+        {
+          "type": "password",
+          "value": "password123",
+          "temporary": false
+        }
+      ],
+      "realmRoles": [
+        "user"
+      ],
+      "attributes": {
+        "department": ["営業部"],
+        "position": ["課長"]
+      }
+    }
+  ],
+  "roles": {
+    "realm": [
+      {
+        "name": "user",
+        "description": "User role"
+      },
+      {
+        "name": "admin",
+        "description": "Administrator role"
+      }
+    ]
+  },
+  "groups": [
+    {
+      "name": "developers",
+      "path": "/developers"
+    },
+    {
+      "name": "admins",
+      "path": "/admins"
+    }
+  ]
+}

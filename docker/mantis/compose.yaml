@@ -1,0 +1,35 @@
+services:
+  mantis-db:
+    image: mysql:8.0
+    container_name: mantis-db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: bugtracker
+      MYSQL_USER: mantis
+      MYSQL_PASSWORD: mantis
+    volumes:
+      - mantis_db_data:/var/lib/mysql
+    restart: unless-stopped
+    command: --default-authentication-plugin=mysql_native_password
+
+  mantis:
+    image: xlrl/mantisbt:latest
+    container_name: mantis
+    depends_on:
+      - mantis-db
+    ports:
+      - "8989:80"
+    environment:
+      DB_TYPE: mysqli
+      DB_HOST: mantis-db
+      DB_NAME: bugtracker
+      DB_USER: mantis
+      DB_PASSWORD: mantis
+      TIMEZONE: Asia/Tokyo
+    volumes:
+      - mantis_data:/var/www/html/
+    restart: unless-stopped
+
+volumes:
+  mantis_db_data:
+  mantis_data:

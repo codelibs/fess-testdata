@@ -1,0 +1,14 @@
+services:
+  webdav:
+    image: bytemark/webdav:latest
+    container_name: webdav-server
+    environment:
+      AUTH_TYPE: Basic
+      USERNAME: testuser
+      PASSWORD: testpass
+      TZ: 'Asia/Tokyo'
+    volumes:
+      - ./data/webdav:/var/lib/dav
+    ports:
+      - "10080:80"
+    restart: unless-stopped

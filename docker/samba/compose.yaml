@@ -1,0 +1,17 @@
+services:
+  samba:
+    image: dperson/samba:latest
+    container_name: samba-server
+    ports:
+      - "1139:139"
+      - "1445:445"
+    volumes:
+      - ./data:/share:z
+    environment:
+      - TZ=Asia/Tokyo
+    command: >
+      -u "testuser1;test123"
+      -u "testuser2;test123"
+      -s "public;/share/share;yes;no;no;all"
+      -s "users;/share/users;no;no;no;testuser1,testuser2"
+    restart: unless-stopped

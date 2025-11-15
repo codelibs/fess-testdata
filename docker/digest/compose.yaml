@@ -1,7 +1,6 @@
-version: '2'
 services:
   apache:
-    image: httpd:2.4.33
+    image: httpd:2.4
     container_name: apache_digest
     ports:
       - "18080:80"
@@ -9,3 +8,4 @@ services:
       - ./var/html/:/usr/local/apache2/htdocs/
       - ./var/httpd.conf:/usr/local/apache2/conf/httpd.conf
       - ./var/.htdigest:/usr/local/apache2/.htdigest
+    restart: unless-stopped

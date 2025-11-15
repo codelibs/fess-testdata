@@ -3,9 +3,9 @@ MySQL Test Environment
 
 ## Run MySQL
 
-```
-$ docker-compose up -d
-$ docker-compose exec mysql bash -c "mysql -u hoge -pfuga testdb < /sql/testdb.sql"
+```bash
+docker compose up -d
+docker compose exec mysql bash -c "mysql -u hoge -pfuga testdb < /sql/testdb.sql"
 ```
 
 ## Fess
@@ -28,6 +28,6 @@ $ docker-compose exec mysql bash -c "mysql -u hoge -pfuga testdb < /sql/testdb.s
 
 ## Stop MySQL
 
-```
-$ docker-compose down
+```bash
+docker compose down
 ```
